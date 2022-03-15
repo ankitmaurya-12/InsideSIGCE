@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  :root{
+    --mount-meadow: #1bbc9c;
+    --white-smoke: #f0f0f0;
+    --night-rider: #343434;
+    --black: #191b17;
+    --transition: all 0.5s ease-in-out;
+}
+
+
+#navbar-toggler{
+    display: none;
+}
+.navigation .container{
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+   
+    
+}
+.navbar-collapse ul{
+   display: flex;
+    list-style: none;
+    padding: .5rem 1.5rem;
+    
+}
+.navbar-collapse ul li a{
+    text-decoration: none;
+    padding: 0rem 1.5rem;
+    color: var(--white-smoke);
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+.navbar-collapse ul li a:hover{
+    color: var(--mount-meadow);
+}
+.navigation {
+   
+    
+      color: #fff;
+    
+    
+   
+}
+.nav-toggler a{
+  display: flex;
+  margin-top: 20px;
+ 
+    text-decoration: none;
+    color: var(--white-smoke);
+    font-size: 2rem;
+
+
+}
+.nav-toggler a:hover{
+  color: var(--mount-meadow);
+}
+.navbar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: inherit;
+    width: 100%;
+    /* background-color: #fff; */
+    z-index: 999;
+}
+
+.StickyNav{
+/* border-bottom: 1px solid var(--white-smoke); */
+    background-color: black;
+    background:rgba(0, 0, 0,) ;
+   
+}
+
+{{!-- for responsive --}}
+
+
+@media screen and (max-width: 816px) {
+  
+    #navbar-toggler{
+            display: block;
+            }
+    .navbar-collapse{
+        display: none;
+
+    }
+    .collapse{
+       display: flex;
+       height: 100%;
+        flex-direction: row;
+    } 
+.navigation .container{
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    flex-direction: column;
+    position: absolute;
+    height: 60px;
+    transition: all .5s ease-in-out;
+    top: 0;
+    left: 0;
+}
+
+.navbar-collapse ul {
+    display: flex;
+    list-style: none;
+    padding: 0.5rem 1.5rem;
+    flex-direction: column;
+    margin-top: 60px;
+    margin-left: 40%;
+   
+}
+.navbar-collapse ul li a:hover{
+    background: rgba(255,255,255,.2);
+    border-radius: 10px;
+    
+
+}
+.nav-toggler a {
+    text-decoration: none;
+    color: var(--white-smoke);
+    font-size: 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+    .toggle{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 5px 5px;
+        
+        font-size: 2rem;
+        cursor: pointer;
+        
+    }
+    #navbar-toggler{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+    .navigation .container{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        display: block;
+        overflow: hidden;
+       
+        
+    }
+    .navbar-collapse{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+} 
+</style>
+<body>
+    <navigation>
+        <div class="navigation StickyNav" id="navigation">
+            <div class="navbar">
+                <div class="container">
+                    <div class = "nav-toggler">
+                        <a href = "/index" class = "navbar-brand"> NewsHuB
+                        </a>
+                        <button type = "button" class = "navbar-toggler" id = "navbar-toggler">
+                          <i class = "fas fa-bars"></i>
+                        </button>
+                     </div>
+                      <div class = "navbar-collapse">
+                        <ul class = "navbar-nav">
+                          <li class = "nav-item">
+                            <a href = "/news" class = "nav-link">News</a>
+                          </li>
+                          <li class = "nav-item">
+                            <a href = "#news-section" class = "nav-link">Feature</a>
+                          </li>
+                          <li class = "nav-item">
+                            <a href = "#team" class = "nav-link">Team</a>
+                          </li>
+                          <li class = "nav-item">
+                            {{!-- <a href = "#faq" class = "nav-link">FAQ</a> --}}
+                            <div id="google_translate_element"></div>
+                            
+                          </li>
+                          <li class = "nav-item">
+                            <a href = "#contact" class = "nav-link">Contact</a>
+                           
+                          </li>
+                          <li class = "nav-item">
+                            <a href = "/login" class = "nav-link">Login</a>
+                          </li>
+                        </ul>
+                      </div>
+                </div>
+            </div>
+            
+            
+         </div>
+        
+</navigation>
+</body>
+<script>
+  // for responsive 
+
+
+
+function myFunction(x) {
+    let navbarcollapse = document.querySelector(".navbar-collapse");
+    let container = document.querySelector(".container")
+    if (x.matches) { // If media query matches
+        let togglebtn = document.getElementById("navbar-toggler");
+        // console.log(togglebtn)
+        let navbarcollapse = document.querySelector(".navbar-collapse");
+        let container = document.querySelector(".container")
+        // console.log(container)
+        // console.log(navbarcollapse)
+        togglebtn.addEventListener("click", () => {
+            if (navbarcollapse.style.display == "none") {
+
+                navbarcollapse.style.display = "block"
+
+                container.style.height = "300px"
+
+
+            }
+            else {
+                navbarcollapse.style.display = "none"
+                // navbarcollapse.style.width="300px"
+                container.style.height = "60px"
+
+
+            }
+
+        })
+    } else {
+        navbarcollapse.style.display="flex"
+        // navbarcollapse.style.display = "block"
+        container.style.height = "60px"
+    }
+}
+
+var x = window.matchMedia("(max-width: 816px)")
+myFunction(x) // Call listener function at run time
+x.addListener(myFunction) // Attach listener function on state changes
+
+
+
+
+
+</script>
+
+</html>

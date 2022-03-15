@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .image-preview{
+            width: 80%;
+            height: 400px;
+            min-height: 100px;
+            border: 2px solid black;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-preview__image{
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position:top;
+        }
+        #image-container{
+            height: 100%;
+            width: 100%;
+            /* margin-left: 30%; */
+        }
+        #inpFile{
+            margin: 10px;
+        }
+
+.image-preview{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin: auto;
+}
+
+        .otherinfo{
+            display: flex;
+            flex-flow: row wrap;
+            /* align-items: baseline; */
+           align-content: space-around;
+           }
+
+           .otherinfo input{
+               max-width: 200px;
+           }
+.input-conatiner{
+    margin: 1.4rem;
+    display: flex;
+}
+input,label{
+    height: 1.2rem;
+    font-size: 1.2rem;
+}
+
+#Title{
+       width:70%;
+        height: 30px;
+        
+
+}
+.description{
+    width: 50%;
+}
+#uploadAriticleContinaer{
+    width: 90%;
+    height: 100%;
+    border: 2px solid black;
+    margin: auto;
+    /* overflow: hidden; */
+}
+.combine{
+    margin: 10px;
+    display: block;
+}
+#submitbtn{
+
+    background-color: rgb(73, 73, 78);
+    margin: 10px;
+    width: 200px;
+    padding: 15px;
+    /* margin: auto; */
+    color: rgb(255, 252, 250);
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+}
+
+.links-container{
+    /* display: flex; */
+    flex-direction: row;
+    display: none;
+
+}
+    </style>
+</head>
+<body>
+    
+<form action="/articles/upload" method="POST" enctype="multipart/form-data">
+    
+    <h1>Upload Your Own  Article</h1>
+
+    <div id="uploadAriticleContinaer">
+
+   
+ <div class="input-conatiner">
+     <label for="Title">Title :</label>
+     <input name="title" id="Title" type="text"placeholder="Enter title">
+ </div>
+ <div class="input-conatiner">
+     <label for="Description">Description :</label>
+     <textarea name="description" id="Description" cols="120" rows="10"></textarea>
+    
+ </div>
+
+ <!-- <div class="input-conatiner">
+
+
+     <label for="Type">Category :</label>
+
+     Local News: <input type="radio" name="type" value="Local News"> 
+     College News: <input type="radio" name="type" value="College News">
+ </div> -->
+ <div class="input-conatiner otherinfo">
+
+    <div class="combine">
+
+        Auther Name : <input type="text"name="Auther_name" disabled value="<%= authername%>">
+    </div>
+    <div class="combine">
+
+        Location :  <input type="text" name="location">
+    </div>
+    
+ </div>
+
+ <div class="imp-links">
+    <label for="Type">Do you want to add important links :</label>
+
+    Yes: <input type="radio" name="type" id="YesImp" value="Yes"> 
+    No: <input type="radio" name="type" id="NoImp" value="No">
+
+    <div class="links-container">
+        <div class="field_wrapper">
+            <div>
+                <input type="text" name="field_name[]" value=""/>
+                <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
+            </div>
+        </div>
+
+</div>
+
+ 
+ 
+ 
+ <h1>Image prevview</h1>
+ <div id="image-container">
+     
+     <div class="image-preview" id="imagePreview">
+         <!-- <span class="image-preview__default-text">Image preview</span> -->
+         <span class="image-preview__default-text">Image Preview</span>
+         <img src="" alt="Image preview" class="image-preview__image">
+         
+        </div>
+        <input type="file" name="image"id="inpFile">
+    </div>
+    <button type="submit" class="btn" id="submitbtn">Submit</button>
+</form>
+    
+
+
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    const inpFile =document.getElementById("inpFile")
+    const previewContainer =document.getElementById("imagePreview")
+    const previewImage = previewContainer.querySelector(".image-preview__image")
+    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text")
+
+    inpFile.addEventListener("change",function(){
+        const file=this.files[0];
+        // console.log(file)
+        if(file){
+            const reader = new FileReader();
+            previewDefaultText.style.display="none"
+            previewImage.style.display="block"
+
+            reader.addEventListener("load",function(){
+                console.log(this)
+                previewImage.setAttribute("src",this.result)
+
+            })
+            reader.readAsDataURL(file)
+        }else{
+            previewDefaultText.style.display="null"
+            previewImage.style.display="null"
+            previewImage.setAttribute("src","")
+        }
+    })
+
+const YesImp= document.getElementById('YesImp')
+const NoImp=document.getElementById('NoImp')
+const LinksContainer =document.querySelector('.links-container')
+YesImp.addEventListener('click',()=>{
+
+   
+    LinksContainer.style.display='block'
+
+})
+NoImp.addEventListener('click',()=>{
+
+
+LinksContainer.style.display='none'
+
+})
+
+
+
+    $(document).ready(function(){
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = '<div><input type="text" name="field_name[]"value=""><a href="javascript:void(0);" class="remove_button">Remove</a></div>'; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+</script>
+
+
+</html>
