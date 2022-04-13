@@ -52,7 +52,7 @@ router2.get('/', async(req, res) => {
 
 router2.get('/upload',auth, async (req, res) => {
   if( !req.cookies.authorname ){
-    req.redirect('back')
+    res.redirect('back')
   }
   
   const user = await models.Register.findOne({ username: req.cookies.authorname })
