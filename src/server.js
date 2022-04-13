@@ -85,8 +85,10 @@ app.get("/index", (req, res) => {
 app.get("/news", (req, res) => {
     const token = req.cookies.jwt;
     const authorname = req.cookies.authorname;
+    const API_KEY= process.env.API_KEY;
+    // console.log(API_KEY)
     const  errorMessage=req.flash('error')[0]
-    res.render("news.ejs",{data:{errorMessage:errorMessage,token:token},authorname})
+    res.render("news.ejs",{data:{errorMessage:errorMessage,token:token},authorname,API_KEY})
 })
 
 

@@ -1,6 +1,5 @@
-const API_KEY="e4fc72735a3743afae298a92b13d3dd0"
-// console.log(API_KEY)
-
+// const API_KEY="e4fc72735a3743afae298a92b13d3dd0"
+const API_KEY=api;
 console.log("welcome");
 // topNewsContainer = document.querySelector(".top-news-container")
 newscontainer=document.getElementById("news-container")
