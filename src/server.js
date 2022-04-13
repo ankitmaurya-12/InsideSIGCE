@@ -81,6 +81,7 @@ app.get("/index", (req, res) => {
 
 
 
+
 app.get("/news", (req, res) => {
     const token = req.cookies.jwt;
     const authorname = req.cookies.authorname;
