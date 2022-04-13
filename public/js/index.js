@@ -17,46 +17,10 @@ function StickyNav(){
 }
 
 window.addEventListener('scroll',StickyNav);
-
-
- // team carousel 
- $('.team .owl-carousel').owlCarousel({
-    loop: true,
-    margin: 10,
-    autoplay: true,
-    dots: true,
-    nav: false,
-    responsiveClass: true,
-    responsive:{
-        0:{
-            items: 1
-        }, 
-        600:{
-            items: 2
-        },
-        1000:{
-            items: 3
-        }
-    }
-});
-
-$('.faq-head').each(function(){
-    $(this).click(function(){
-        $(this).next().toggleClass('show-faq-content');
-        let icon = $(this).children('span').children("i").attr('class');
-
-        if(icon == "fas fa-plus"){
-            $(this).children('span').html('<i class = "fas fa-minus"></i>');
-        } else {
-            $(this).children('span').html('<i class = "fas fa-plus"></i>');
-        }
-    });
-});
-
 // for responsive 
-
-
-
+        
+        
+        
 function myFunction(x) {
     let navbarcollapse = document.querySelector(".navbar-collapse");
     let container = document.querySelector(".container")
@@ -95,6 +59,42 @@ function myFunction(x) {
 var x = window.matchMedia("(max-width: 816px)")
 myFunction(x) // Call listener function at run time
 x.addListener(myFunction) // Attach listener function on state changes
+
+
+ // team carousel 
+ $('.team .owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    autoplay: true,
+    dots: true,
+    nav: false,
+    responsiveClass: true,
+    responsive:{
+        0:{
+            items: 1
+        }, 
+        600:{
+            items: 2
+        },
+        1000:{
+            items: 3
+        }
+    }
+});
+
+$('.faq-head').each(function(){
+    $(this).click(function(){
+                $(this).next().toggleClass('show-faq-content');
+        let icon = $(this).children('span').children("i").attr('class');
+
+        if(icon == "fas fa-plus"){
+            $(this).children('span').html('<i class = "fas fa-minus"></i>');
+        } else {
+            $(this).children('span').html('<i class = "fas fa-plus"></i>');
+        }
+    });
+});
+
 
 
 
