@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        .errorMessage{
+           
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    left: 31vw;
+	top:0px;
+	font-size: 2rem;
+	min-width:30%;
+	
+	height: 60px;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 10px;
+    padding: 5px;
+   color: white;
+    animation: fadein 1s  ease-in forwards;
+	
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+  to {top: 120px; opacity: 1; display: none;}
+}
+
+#dismissBtn{
+    padding: 10px;
+    font: size 1.2em;
+    width: 50px;
+    font-size: 3.5rem;
+    background: transparent;
+    border: none;
+    color: white;
+
+
+}
+#dismissBtn:hover{
+	
+    /* font-size: 4rem; */
+    color: black;
+}
+    </style>
+</head>
+<body>
+    
+  
+        <div id="errorBox" class="alert  errorMessage "style="background-color: green;" >
+      
+        <button type="button", style="padding: 10px; font: size 1.2em;" class="close dismissBtn" id="dismissBtn"  data-dismiss="alert">&times;</button>
+        
+        some erorr oecddddod eoeo  lojjjjiui
+      
+      </div>
+</body>
+<script>
+    const dismissBtn = document.getElementById("dismissBtn");
+const errorBox =document.getElementById("errorBox");
+
+dismissBtn.addEventListener('click',function(e){
+  errorBox.style.display='none'
+})
+
+const hideAlert = setTimeout(toggleError, 2000);
+function toggleError() {
+    errorBox.style.display ='none'
+  }
+</script>
+</html>

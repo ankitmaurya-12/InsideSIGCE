@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+    <title>Upload Article</title>
+    <!-- <style>
+        body{
+            height: 100vh;
+        }
+        .uploadContainer{
+            margin-top: 65px;
+            margin-bottom: 20px;
+            border: 2px solid rgb(239, 228, 228) ;
+            background-color:rgb(239, 228, 228) ;
+            border-radius: 10px;
+            padding: 20px;
+        }
         .image-preview{
             width: 80%;
             height: 400px;
             min-height: 100px;
-            border: 2px solid black;
+            border: 2px solid rgb(95, 12, 12);
+            border-radius: 10px;
             margin-top: 20px;
             font-size: 1.4rem;
             font-weight: bold;
@@ -72,9 +84,14 @@ input,label{
 #uploadAriticleContinaer{
     width: 90%;
     height: 100%;
-    border: 2px solid black;
+    /* border: 10px solid white;
+    border-radius: 10px; */
     margin: auto;
     /* overflow: hidden; */
+}
+.fieldset{
+    border: 10px solid white;
+    border-radius: 10px;
 }
 .combine{
     margin: 10px;
@@ -100,86 +117,115 @@ input,label{
     display: none;
 
 }
-    </style>
+    </style> -->
+    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="/css/UploadArticle.css">
+    
 </head>
 <body>
-    
-<form action="/articles/upload" method="POST" enctype="multipart/form-data">
-    
-    <h1>Upload Your College  Article</h1>
-
-    <div id="uploadAriticleContinaer">
-
-   
- <div class="input-conatiner">
-     <label for="Title">Title :</label>
-     <input name="title" id="Title" type="text"placeholder="Enter title">
- </div>
- <div class="input-conatiner">
-     <label for="Description">Description :</label>
-     <textarea name="description" id="Description" cols="120" rows="10"></textarea>
-    
- </div>
-
- <!-- <div class="input-conatiner">
-
-
-     <label for="Type">Category :</label>
-
-     Local News: <input type="radio" name="type" value="Local News"> 
-     College News: <input type="radio" name="type" value="College News">
- </div> -->
- <div class="input-conatiner otherinfo">
-
-    <div class="combine">
-
-        College Name : <input type="text"name="Auther_name" disabled value="<%= authername%>">
-    </div>
-    <div class="combine">
-
-        Location :  <input type="text" name="location"disabled value="<%= location%>">
-    </div>
-    
- </div>
-
- <div class="imp-links">
-    <label for="Type">Do you want to add important links :</label>
-
-    Yes: <input type="radio" name="type" id="YesImp" value="Yes"> 
-    No: <input type="radio" name="type" id="NoImp" value="No">
-
-    <div class="links-container">
-        <div class="field_wrapper">
-            <div>
-                <input type="text" name="field_name[]" value=""/>
-                <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
-            </div>
-        </div>
-
-</div>
-
- 
- 
- 
- <h1>Image prevview</h1>
- <div id="image-container">
+    <%- include("../../partials/navigation",{author:data.params.authorname}); %>
+    <div id="errorBox">
      
-     <div class="image-preview" id="imagePreview">
-         <!-- <span class="image-preview__default-text">Image preview</span> -->
-         <span class="image-preview__default-text">Image Preview</span>
-         <img src="" alt="Image preview" class="image-preview__image">
-         
+        <% if ( data.errorMessage ) {%>
+        
+          <div id="errorBox" class="alert  errorMessage "style="background-color: <%=data.errorMessage.type%>;" >
+        
+          <button type="button", style="padding: 10px; font: size 1.2em;" class="close- dismissBtn" id="dismissBtn"  data-dismiss="alert">&times;</button>
+          
+          <%=data.errorMessage.message %>
+        
         </div>
-        <input type="file" name="image"id="inpFile">
-    </div>
-    <button type="submit" class="btn" id="submitbtn">Submit</button>
-</form>
+        
+        <%}%>
+   </div>
+
     
 
+<div class="uploadContainer">
+    <!-- <h1>Upload Your Own  Article</h1> -->
+    <form action="/articles/upload" method="POST" enctype="multipart/form-data">
+    <fieldset class="fieldset">
+        <legend> <h1>Upload College News</h1></legend>
 
+
+        <div id="uploadAriticleContinaer">
+    
+       
+            <div class="input-conatiner">
+                <label for="Title">Title :</label>
+                <input name="title" id="Title" type="text"placeholder="Enter title" required>
+            </div>
+            <div class="input-conatiner">
+                <label for="Description">Description :</label>
+                <textarea name="description" id="Description" cols="120" rows="10" required></textarea>
+               
+            </div>
+           
+            <!-- <div class="input-conatiner">
+           
+           
+                <label for="Type">Category :</label>
+           
+                Local News: <input type="radio" name="type" value="Local News"> 
+                College News: <input type="radio" name="type" value="College News">
+            </div> -->
+            <div class="input-conatiner otherinfo">
+           
+               <div class="combine">
+           
+                   Author Name : <input type="text"name="Author_name" readonly value="<%= data.params.authorname%>">
+               </div>
+               <div class="combine">
+           
+                   
+                   Location :  <input type="text" name="location" value="<%= data.params.location%>" readonly>
+               </div>
+               
+            </div>
+           
+            <!-- <div class="imp-links">
+               <label for="Type">Do you want to add important links :</label>
+           
+               Yes: <input type="radio" name="type" id="YesImp" value="Yes"> 
+               No: <input type="radio" name="type" id="NoImp" value="No">
+           
+               <div class="links-container">
+                   <div class="field_wrapper">
+                       <div>
+                           <input type="text" name="field_name[]" value=""/>
+                           <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
+                       </div>
+                   </div>
+           
+              </div>
+           </div> -->
+            
+            
+            
+            <h1>Image preview</h1>
+            <div id="image-container">
+                
+                <div class="image-preview" id="imagePreview">
+                    <!-- <span class="image-preview__default-text">Image preview</span> -->
+                    <span class="image-preview__default-text">Image Preview</span>
+                    <img src="" alt="Image preview" class="image-preview__image">
+                    
+                   </div>
+                   <input type="file" name="image"id="inpFile" required>
+               </div>
+               <button type="submit" class="btn" id="submitbtn">Submit</button>
+           </div>
+    </fieldset>
+    
+ 
+    </form>
 </div>
+
+<%- include("../../partials/footer"); %>
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/popup.js"></script>
 <script>
     const inpFile =document.getElementById("inpFile")
     const previewContainer =document.getElementById("imagePreview")

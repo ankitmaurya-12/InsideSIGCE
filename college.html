@@ -183,5 +183,48 @@
         </div>
     </div>
 </body>
+<div class="container ">
+    <h1 class="mb-4">Blog Articles</h1>
+   
+    
+    <% articles.forEach(article => { %>
 
+      <% if (article.status==true) {%>
+      
+       <div class="card mt-4">
+        <div class="card-body border border-danger w-auto p-3" style="background-color: #eee">
+          <h4 class="card-title"><%= article.title %></h4>
+          <!-- <h4 class="card-title"><%= article.status %></h4> -->
+          <h4 class="card-title"></h4>
+          <div class="card-subtitle text-muted mb-2">
+            <%= article.createdAt.toLocaleDateString() %>
+          </div>
+  
+         
+         <div>
+          <img src="data:image/image/png;base64,
+          <%=article.image.data.toString('base64')%>" width='auto' height="350px" object-fit="fit">
+          
+         </div>
+         <!-- <div class="card-text mb-2 "><%= article.description %></div> -->
+         <input type="text"class="card-text mb-2 my-2 " disabled name="location"disabled value="Auther Name :<%= article.Auther_name  %>">
+          <!-- <textarea class="card-text mb-2 my-2 " disabled ></textarea> -->
+          <a href="articles/<%= article.id %>" class="btn btn-primary">Read More</a>
+          <!-- <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a> -->
+          
+          <!-- <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline"> -->
+            <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+          <!-- </form> -->
+        </div>
+      </div>
+    <%} else { %>
+    <p> Nothing</p>
+    <%}%>
+
+      
+      
+
+    
+    <% }) %>
+  </div>
 </html>

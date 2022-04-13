@@ -1,4 +1,5 @@
-const API_KEY="e4fc72735a3743afae298a92b13d3dd0"
+require('dotenv').config();
+const API_KEY=process.env.API_KEY
 // console.log(API_KEY)
 
 console.log("welcome");

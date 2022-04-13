@@ -1,0 +1,74 @@
+/* .errorMessage{
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top:120px;
+	left: 27%;
+	font-size: 2rem;
+	
+	height: 60px;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 10px;
+    padding: 2px;
+   color: white;
+    
+	
+} */
+/* #dismissBtn{
+	padding: 5px 15px;
+	
+	color:black;
+	font-size: 20px;
+	cursor: pointer;
+	
+
+} */
+/* dismissBtn:hover{
+	background-color: black;
+} */
+
+
+.errorMessage{
+           
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    left: 31vw;
+	top:0px;
+	font-size: 2rem;
+	min-width:30%;
+	
+	height: 60px;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 10px;
+    padding: 5px;
+   color: white;
+    animation: fadein 1s  ease-in forwards;
+	
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+  to {top: 120px; opacity: 1; display: none;}
+}
+
+#dismissBtn{
+    padding: 10px;
+    font: size 1.2em;
+    width: 50px;
+    font-size: 3.5rem;
+    background: transparent;
+    border: none;
+    color: white;
+
+
+}
+#dismissBtn:hover{
+	
+    /* font-size: 4rem; */
+    color: black;
+}

@@ -55,8 +55,11 @@ img{
 }
 .navigation .container{
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between ;
     
+}
+.user{
+    margin-left: 30px;
 }
 .navbar-collapse ul{
    display: flex;
@@ -72,7 +75,11 @@ img{
     font-size: 1.5rem;
 }
 .navbar-collapse ul li a:hover{
-    color: var(--mount-meadow);
+    color: var(--white-smoke);
+    background-color: var(--night-rider);
+    /* padding: 0rem 1.2rem;
+    /* border-radius: 20%; */ 
+    border-radius: 20px;
 }
 .navigation {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,.9)),url(../assest/header-bg.jpg);
@@ -109,7 +116,12 @@ img{
    
 }
 
-
+.nav-toggler{
+    display: flex;
+    justify-content: space-around;
+    /* flex-direction: row; */
+  }
+  
 /* for .typeing-container */
 
 .typeing-container{
@@ -481,5 +493,9 @@ img{
     .txt{
     font-size: 2rem;
     }
-
+    .user{
+  
+        margin-left: 50%;
+        
+      }
 } 

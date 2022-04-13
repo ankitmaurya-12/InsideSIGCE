@@ -25,36 +25,50 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8080;
 
-app.set("view engine", "hbs",)
+// app.set("view engine", "hbs",)
 app.set("view engine", "ejs",)
 
 const static_path = path.join(__dirname, "../public")
 console.log(static_path)
 app.use(express.static(static_path))
+// const session = require("express-session")
+const flash = require('connect-flash')
 
 
 
 
 const templte_path = path.join(__dirname, "../src/templates/views")
 const partials_path = path.join(__dirname, "../src/templates/partials")
-hbs.registerPartials(partials_path)
+// hbs.registerPartials(partials_path)
 
 
 app.set("views", templte_path)
 
  console.log(process.env.SECRET_KEY)
-
-
+ app.use(session({
+    secret: 'secret',
+    cookie:{maxAge:null},
+    resave:true,
+    saveUninitialized:true
+})) 
+app.use(flash())
 
 // routeing 
 
 app.get("/", (req, res) => {
-    res.render("index.hbs")
+    const  errorMessage=req.flash('error')[0]
+    const token = req.cookies.jwt;
+    const author = req.cookies.authorname;
+    
+    res.render("index.ejs",{errorMessage,token,author})
 })
 app.get("/index", (req, res) => {
-    res.render("index.hbs");
+    const  errorMessage=req.flash('error')[0]
+    const token = req.cookies.jwt;
+    const author = req.cookies.authorname;
+    res.render("index.ejs",{errorMessage,token,author})
 })
 
 // app.get("/login", (req, res) => {
@@ -64,13 +78,33 @@ app.get("/index", (req, res) => {
 // })
 
 app.get("/news", (req, res) => {
-    res.render("news.hbs")
+    const token = req.cookies.jwt;
+    const authorname = req.cookies.authorname;
+    const  errorMessage=req.flash('error')[0]
+    res.render("news.ejs",{data:{errorMessage:errorMessage,token:token},authorname})
 })
 
 
 app.get("/global-news", (req, res) => {
-    res.render("global.hbs")
+    const token = req.cookies.jwt;
+    const authorname = req.cookies.authorname;
+
+    res.render("global.ejs",{token:token,authorname:authorname})
 })
+app.get("/UsesrDashboard",auth,async (req, res) => {
+    const authorname=req.cookies.authorname;
+    const user = await models.Register.findOne({ username: req.cookies.authorname })
+    if(user.AccountType=="local"){
+        // console.log(user.AccountType)
+        const articles = await models.Article.find({"Author_name":req.cookies.authorname}).sort({ createdAt: 'desc' })
+        res.render("UsesrDashboard.ejs",{ "articles": articles,"articleType":"local",authorname })
+    }else{
+        const articles = await models.CollegeNews.find({"Author_name":req.cookies.authorname}).sort({ createdAt: 'desc' })
+        res.render("UsesrDashboard.ejs",{ "articles": articles,"articleType":"college",authorname })
+    }
+    // console.log(articles)
+})
+
 // app.get("/admin", (req, res) => {
 //     res.render("articles/admin.ejs")
 // })
@@ -95,15 +129,20 @@ app.post("/feedback", async (req, res) => {
             message: req.body.message
         })
         const feedbacksave = await feedback.save().then(() => {
-            res.send("Your feedback submitted")
+            // res.send("Your feedback submitted")
+            req.flash('error',{message:"Your feedback submitted successfully",type:"green"})
+            res.redirect('/');
 
         }).catch(() => {
-            res.send("Some error while submitting feedback")
+            req.flash('error',{message:"Some error while submitting feedback",type:"red"})
+            res.redirect('/')
         })
 
 
         //  res.status(201).render("news")
-        console.log(req.body)
+        // console.log(req.body)
+
+        
     } catch (error) {
 
         res.send(`some error occures ${error}`)

@@ -26,7 +26,7 @@ const feedbackSchema = new mongoose.Schema({
 //   module.exports=Feedback;
 
 
-//   for register
+//   for register schema
   const registerSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -105,7 +105,8 @@ const feedbackSchema = new mongoose.Schema({
 
 
 
-//    for article
+//    for article  local news
+
 const articleSchema = new mongoose.Schema({
 
     title: {
@@ -115,11 +116,8 @@ const articleSchema = new mongoose.Schema({
     description: {
       type: String
     },
-    // markdown: {
-    //   type: String,
-    //   required: true
-    // },
-    Auther_name: {
+    
+    Author_name: {
       type : String,
       // required:true,
       default :store('name')
@@ -129,10 +127,17 @@ const articleSchema = new mongoose.Schema({
       data: Buffer,
       contentType: String
   },
-//   location :{
-//       type: String,
-//       required: true
-//   },
+  newsType:{
+      type : String,
+      default: "local"
+  },
+  
+  location :{
+      type: String,
+      required: true
+    
+      
+  },
   status:{
     type: Boolean,
     default : false
@@ -146,9 +151,55 @@ const articleSchema = new mongoose.Schema({
   })
   const Article= new mongoose.model("Article",articleSchema)
 
+//   for college news schema 
+
+const CollegeNewsSchema = new mongoose.Schema({
+
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String
+    },
+    
+    Author_name: {
+      type : String,
+      required:true,
+      default :store('name')
+      
+    },
+    image: {
+      data: Buffer,
+      contentType: String
+  },
+  newsType:{
+    type : String,
+    default: "college"
+},
+  
+  location :{
+      type: String,
+      required: true
+   
+      
+  },
+  status:{
+    type: Boolean,
+    default : false
+  },
+  createdAt: {
+      type: Date,
+      default: Date.now
+  }
+  
+ 
+  })
+  const CollegeNews= new mongoose.model("CollegeNews",CollegeNewsSchema)
+
 //    exporting feedback and register module
 
-  module.exports={Feedback,Register,Article}
+  module.exports={Feedback,Register,Article,CollegeNews}
 
   
      

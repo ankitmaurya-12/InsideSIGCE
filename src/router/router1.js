@@ -6,14 +6,14 @@ const session = require("express-session")
 const cookieParser = require("cookie-parser")
 const flash = require('connect-flash')
 const store = require("store2");
-
+const auth= require("../middleware/auth")
 // const models = require("./db/model/feedback-model");
 
 // for user Registration
 const models = require("../db/model/feedback-model");
 const router =express.Router();
 
-
+router.use(flash())
 // // for user Registration
 
 router.post("/register", async (req, res) => {
@@ -27,21 +27,24 @@ router.post("/register", async (req, res) => {
 
         })
 
-        const token = await register.generateAuthToken();
-        res.cookie("jwt",token,{
-            expires:new Date(Date.now()+90000000),
-            httpOnly:true
+        // const token = await register.generateAuthToken();
+        // res.cookie("jwt",token,{
+        //     expires:new Date(Date.now()+90000000),
+        //     httpOnly:true
 
-        });
+        // });
        
         const registersave = await register.save();
-        res.status(201).render("news.hbs");
         console.log(req.body)
+        req.flash('error',{message:"Registration Sucessfully",type:"green"})
+        res.status(201).redirect("/login");
         
     } catch (error) {
-        res.render("index.hbs")
+        console.log(error)
+        req.flash('error',{message:"Some error occure while registration",type:"red"})
+        res.redirect("/login")
         
-        res.send(` some error occures in registration ${error}`)
+        // res.send(` some error occures in registration ${error}`)
     }
 });
 
@@ -61,8 +64,10 @@ router.use(flash())
 // })
 
 router.get("/login", (req, res) => {
-    const  username=req.flash('error')
-    res.render("login.hbs",{username});
+    const  errorMessage=req.flash('error')[0]
+    const token = req.cookies.jwt;
+    const author = req.cookies.author;
+    res.render("login.ejs",{errorMessage,token,author});
     
 })
 router.post("/login",async (req,res)=>{
@@ -73,16 +78,11 @@ router.post("/login",async (req,res)=>{
 
 
         // for admin login
-        if(username=="Admin123" && password=="pass"){
-            const articles = await models.Article.find().sort({ createdAt: 'desc' })
-            res.render("articles/admin.ejs",{ articles: articles })
-         
-            
-        }
+        
 
-       else{
+       
             // console.log(`${username} and ${password}`);
-
+     
         const UserName = await models.Register.findOne({username:username});
 
         
@@ -107,11 +107,11 @@ router.post("/login",async (req,res)=>{
         
                 
                 res.cookie("jwt",token,{
-                    expires:new Date(Date.now()+90000000),
+                    expires:new Date(Date.now()+5000000),
                     httpOnly:true,
                     
                 });
-               console.log(req.cookies)
+            //    console.log(req.cookies)
                
               
         
@@ -123,42 +123,100 @@ router.post("/login",async (req,res)=>{
                     const user = await models.Register.findOne({ username: username })
                     console.log(user.location)
                     // console.log("match")
-                   
-                    res.status(201).render("news.hbs");
+                    req.flash('error',{message:`${req.body.username} login sucessfully`,type:"green"})
+                    // res.status(201).render("news.hbs");
                     
                     
-                    res.cookie("authername",store('name'),{
-                        expires:new Date(Date.now()+90000000),
+                    res.cookie("authorname",store('name'),{
+                        expires:new Date(Date.now()+5000000),
                         httpOnly:true,
                         
                     });
-                    console.log("this is auther cookie",req.cookies.authername)
+                    console.log("this is author cookie",req.cookies.authorname)
+                    if(user.AccountType=="admin"){
+                        const articles = await models.Article.find().sort({ createdAt: 'desc' })
+                        const collegeNews = await models.CollegeNews.find().sort({ createdAt: 'desc' })
+                        // res.render("articles/admin.ejs",{ "articles": articles, "collegeNews":collegeNews})
+                        res.redirect('/admin')
+                    }else{
+
+                        res.redirect('/news')
+                    }
                 }else{
-                    // req.session.message={
-                    //     type:'danger',
-                    //     intro :'Empty-field',
-                    //     message:'invallid credintials'
-                    // }
-                    // req.flash('error',req.body.username)
-                    req.flash('error',"invallid credintial")
+                    req.flash('error',{message:"invallid credentials",type:"red"})
                     res.redirect('/login')
-                    console.log("unmatch");
-                    // res.send("invallid credintials")
                 }
-       }
+       
 
         
     }catch(error){
+
         
-    res.status(201).render("login.hbs");
+        req.flash('error',{message:"invallid credentials",type:"red"})
+        res.redirect('/login')
+        console.log("unmatch");
         // res.status(400).send("invallid credentials")
     }
 })
-// router.get('/new', async (req, res) => {
-//     // const auther = "hie"
-//     // UserName : await models.Register.findOne({username:"username})
-//     //  const UserName="hi"
-    //   res.render('articles/new.ejs',{auther: auther})
-//   })
-//   console.log(auther)
+
+
+// for college news 
+
+router.get("/articles/collegeNews",async (req,res)=>{
+    const articles = await models.CollegeNews.find({"status":true}).sort({ createdAt: 'desc' })
+    const status = await models.CollegeNews.find({status : true}).sort({ createdAt: 'desc' })
+
+    const token = req.cookies.jwt
+    const authorname = req.cookies.authorname
+    res.render('articles/collegeNews.ejs',{articles: articles,authorname:authorname,token:token})
+
+  })
+
+  router.get('/articles/collegeNews/:id', async (req, res) => {
+    // const article = await models.Article.findOne({ _id: req.params.id })
+    const article = await models.CollegeNews.findOne({ _id: req.params.id })
+    // if (article== null ) res.redirect('/')
+    // console.log(article.status)
+    const authorname= req.cookies.authorname;
+    const token =req.cookies.jwt
+    res.render('articles/show', { article: article,authorname,token })
+  })
+
+  
+ router.get("/admin",auth, async (req,res)=>{
+    const user = await models.Register.findOne({ username: req.cookies.authorname })
+    if(user.AccountType=="admin"){
+
+        const articles = await models.Article.find().sort({ createdAt: 'desc' })
+        const collegeNews = await models.CollegeNews.find().sort({ createdAt: 'desc' })
+        res.render("articles/admin.ejs",{ "articles": articles, "collegeNews":collegeNews})
+    }else{
+        res.redirect("/UsesrDashboard")
+    }
+ })
+
+router.get('/logout',auth,async (req,res)=>{
+    try{
+        // console.log(req.user)
+        req.user.tokens=req.user.tokens.filter((currentToken)=>{
+            return currentToken.token != req.token
+        })
+        res.clearCookie("jwt")
+        res.clearCookie("authorname")
+        await req.user.save()
+        console.log("user logout")
+        // console.log(req.cookies.jwt)
+        // token=req.cookies.jwt;
+        req.flash('error',{message:"User logout Successfully",type:"green"})
+        // res.render('login.hbs')
+        res.redirect('/login')
+    }catch(error){
+        req.flash('error',{message:"Some error Occurs while Logout",type:"green"})
+        // console.log(error)
+        res.redirect('/login')
+    }
+})
+
+
+
 module.exports=router;

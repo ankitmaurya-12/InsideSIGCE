@@ -67,7 +67,9 @@ xhr.onload = function () {
         let newsHtml = "";
         console.log(articles)
         articles.forEach(function (element, index) {
-
+            let date = new Date(element.publishedAt)
+            let formatteddate= date.toLocaleDateString() 
+            console.log(formatteddate)
             let news =  `<div class="news">
 
         
@@ -76,9 +78,13 @@ xhr.onload = function () {
             </div>
             <div class="news-container">
 
-                <div class="image"><img src="${element['urlToImage']}" alt="No Image Found..."></div>
+                <div class="image"><img src="${element['urlToImage']}" ></div>
                 <div class="news-title"><b>${element["title"]}</b></div>
-            
+                <div class="card-body news-title"> 
+
+                <b>Author : ${element["author"]}</b>
+                <b>Date :${formatteddate}</b>
+            </div>
 
                 <div class="card-body">
                 <button class="read-more"> <a href="${element['url']}" target="_blank">Read more

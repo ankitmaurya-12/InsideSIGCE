@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News</title>
+</head>
+
+<link rel="stylesheet" href="css/news.css">
+<link rel="stylesheet" href="css/popup.css">
+
+<body>
+  <%- include("../partials/navigation",{token:data.token,author:authorname}); %>
+
+  <div id="errorBox">
+     
+    <% if ( data.errorMessage ) {%>
+    
+      <div id="errorBox" class="alert  errorMessage "style="background-color:  <%=data.errorMessage.type%>;" >
+    
+      <button type="button", style="padding: 10px; font: size 1.2em;" class="close- dismissBtn" id="dismissBtn"  data-dismiss="alert">&times;</button>
+      
+      <%=data.errorMessage.message %>
+    
+    </div>
+    
+    <%}%>
+</div>
+
+ 
+
+  <div class="news-section" id="news-section">
+    <div class="container">
+      <div class="row">
+        <div class="detail-item wow animate__animated animate__fadeInLeft animate__slow">
+          <span><i class="fas fa-tablet-alt"></i></span>
+          <h2><a href="/global-news">Global News</a></h2>
+          <div class="line"></div>
+          <p class="text">Visit this section to see all latest News of the world</p>
+        </div>
+
+        <div class="detail-item wow animate__animated animate__fadeInUp animate__s">
+          <span><i class="fab fa-html5"></i></span>
+         <h2><a href="/articles">Local News</a></h2>
+          <div class="line"></div>
+          <p class="text">Visit this section to see all latest News of your locality</p>
+        </div>
+
+        <div class="detail-item wow animate__animated animate__fadeInRight animate__slow">
+          <span><i class="far fa-bell"></i></span>
+            <h2><a href="/articles/upload">Upload News</a></h2>
+
+          <div class="line"></div>
+          <p class="text">Visit this section to Upload Your  News</p>
+        </div>
+        <div class="detail-item wow animate__animated animate__fadeInRight animate__slow">
+          <span><i class="far fa-bell"></i></span>
+          <h2><a href="/articles/collegeNews">College News</a></h2>
+          <div class="line"></div>
+          <p class="text">Visit this section to see all latest News of Your college</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <%- include("../partials/translator"); %>
+
+  <div class="top-news-container">
+        <h1>Top 20 news</h1>
+        <div id="wait"></div>
+        <div id="main-news">
+    
+        </div>
+    <div id="news-container">
+       
+</div>
+
+
+
+
+<%- include("../partials/footer"); %>
+</body>
+<script src="js/news.js"></script>
+<script src="js/popup.js"></script>
+ <!-- <script src="js/delte.js"></script>  -->
+
+</html>
