@@ -24,30 +24,13 @@
             height: 30px;
             border-radius: 10px;
             font-weight: bolder;
-            background-color: rgb(65, 102, 189);
+            /* background-color: rgb(65, 102, 189); */
             /* color: aqua; */
         }
 
-        .btn:hover {
-            background-color: rgba(48, 89, 184, 0.507);
-        }
+      
 
-        #upload_news_section {
-            position: relative;
-            margin-top: -8px;
-        }
-
-        #upload_news_section::before {
-            background: url('bg.jpg') no-repeat center center/cover;
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            top: 0px;
-            left: 0px;
-            opacity: 0.7;
-        }
+        
 
         form {
             display: flex;
@@ -70,14 +53,13 @@
             max-width: 98%;
             max-height: 40vh;
         }
-
-        form .bottom {
+       
+        form .bottom{
             display: flex;
-            margin-top: 10px;
-            margin-left: 20px;
+            flex-wrap: wrap;
         }
 
-        form .bottom .state {
+        form .bottom .location {
             margin-left: 20px;
         }
 
@@ -87,27 +69,28 @@
 
         form .bottom .author .input-author {
             margin-left: 12px;
-            width: 25rem;
+            width: 200px;
             height: 30px;
         }
 
-        form .bottom .state .input-state {
+        form .bottom .location .input-location {
             margin-left: 12px;
-            width: 20rem;
+            width: 200px;
             height: 30px;
         }
 
         .container {
-            border: 2px solid black;
+            /* border: 2px solid black; */
             width: 80%;
-            height: 90vh;
+            /* height: 100vh; */
             display: block;
             margin: auto;
-            background-color: rgb(188, 209, 243);
+            /* background-color: rgb(188, 209, 243); */
             margin-top: 12px;
             font-size: 23px;
             font-family: 'Baloo 2', cursive;
-            color: rgb(4, 8, 37);
+            /* color: rgb(4, 8, 37); */
+             /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%); */
         }
 
         h1 {
@@ -142,89 +125,137 @@
             margin-left: 25px;
             margin-top: 8px;
         }
+
+
+        @media screen and (max-width: 816px) {
+            form .bottom{
+                display: block;
+            }
+            form .bottom .author .input-author{
+                width: 90%;
+            }
+            form .bottom .author .input-location{
+                width: 90%;
+            }
+        }
+
+        .image-preview{
+    width: 90%;
+    height: 400px;
+    min-height: 100px;
+    border: 2px solid rgb(95, 12, 12);
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image-preview__image{
+    display: none;
+    width: 90%;
+    height: 100%;
+    object-fit: contain;
+    object-position:top;
+}
+#image-container{
+    height: 100%;
+    width: 100%;
+    /* margin-left: 30%; */
+}
+#inpFile{
+    margin: 20px;
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: 30px;
+}
+
+.image-preview{
+/* display: flex;
+align-items: center;
+justify-content: center; */
+margin: auto;
+}
+#submitbtn{
+
+background-color: rgb(73, 73, 78);
+margin: 10px;
+width: 200px;
+height: 60px;
+padding: 20px;
+margin: auto;
+color: rgb(255, 252, 250);
+border-radius: 20px;
+font-size: 1.5rem;
+font-weight: bold;
+margin-bottom: 10px;
+
+}
+.fieldset{
+    width: 80%;
+    margin-left: 12%;
+    border-radius: 20px;
+    border: 5px solid HSL(204, 21.7%, 95.5%);
+    padding: 10px;
+    
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
+    /* background-color:  */
+}
     </style>
 </head>
 
 <body>
     <div id="upload_news_section">
-        <h1>Upload your own news</h1>
+        <fieldset class="fieldset">
+            <!-- <h1>Upload your own news</h1> -->
+
+       
+
+        <legend> <h1>Upload Your Own  Article</h1></legend>
         <div class="container">
 
             <form action="" method="post">
                 <div class="title">
                     <label for="title">Title:</label>
-                    <input type="text" class="title-bar" required>
+                    <input type="text" class="title-bar" name="title" required>
                 </div>
                 <label for="desc" class="cont">Content:</label>
-                <textarea name="" id="txt" cols="30" rows="10" required></textarea>
+                <textarea name="description" id="txt" cols="30" rows="10" required></textarea>
                 <div class="bottom">
                     <div class="author">
                         <label for="author">Author name:</label>
-                        <input type="text" class="input-author" required>
+                        <input type="text" name="authorname" class="input-author" value="<%= data.params.authorname%>" readonly >
                     </div>
-                    <div class="state">
-                        <label for="location">State:</label>
-                        <input type="text" name="" class="input-state" id="" required>
+                    <div class="location">
+                        <label for="location">location:</label>
+                        <input type="text" name="location" class="input-location" id="" required>
                     </div>
                 </div>
                 <div class="img">
-                    Image preview(optional):
-                    <input type="file" name="image" id="preview-img">
+                    <h1>Image preview</h1>
+                    <div id="image-container">
+                        
+                        <div class="image-preview" id="imagePreview">
+                            <!-- <span class="image-preview__default-text">Image preview</span> -->
+                            <span class="image-preview__default-text">Image Preview</span>
+                            <img src="" alt="Image preview" class="image-preview__image">
+                            
+                           </div>
+                           <input type="file" name="image"id="inpFile" required>
+                       </div>
+                       <button type="submit" class="btn" id="submitbtn">Submit</button>
+                   </div>
+                    
                 </div>
 
+            </fieldset>
             </form>
-            <div class="radio-ele">
-                <input type="radio" id="LN" name="news" value="Lnews">
-                <label for="localnews">Local News</label><br>
-                <input type="radio" class="CN" name="news" value="Cnews" checked>
-                <label for="collegenews" class="CN">College News</label><br>
-            </div>
-            <button type="submit" form="form1" class="btn" value="Submit">Submit</button>
+            
+           
         </div>
     </div>
 </body>
-<div class="container ">
-    <h1 class="mb-4">Blog Articles</h1>
-   
-    
-    <% articles.forEach(article => { %>
 
-      <% if (article.status==true) {%>
-      
-       <div class="card mt-4">
-        <div class="card-body border border-danger w-auto p-3" style="background-color: #eee">
-          <h4 class="card-title"><%= article.title %></h4>
-          <!-- <h4 class="card-title"><%= article.status %></h4> -->
-          <h4 class="card-title"></h4>
-          <div class="card-subtitle text-muted mb-2">
-            <%= article.createdAt.toLocaleDateString() %>
-          </div>
   
-         
-         <div>
-          <img src="data:image/image/png;base64,
-          <%=article.image.data.toString('base64')%>" width='auto' height="350px" object-fit="fit">
-          
-         </div>
-         <!-- <div class="card-text mb-2 "><%= article.description %></div> -->
-         <input type="text"class="card-text mb-2 my-2 " disabled name="location"disabled value="Auther Name :<%= article.Auther_name  %>">
-          <!-- <textarea class="card-text mb-2 my-2 " disabled ></textarea> -->
-          <a href="articles/<%= article.id %>" class="btn btn-primary">Read More</a>
-          <!-- <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a> -->
-          
-          <!-- <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline"> -->
-            <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
-          <!-- </form> -->
-        </div>
-      </div>
-    <%} else { %>
-    <p> Nothing</p>
-    <%}%>
-
-      
-      
-
-    
-    <% }) %>
-  </div>
 </html>

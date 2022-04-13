@@ -58,7 +58,7 @@ const feedbackSchema = new mongoose.Schema({
     },
     location:{
         type:String,
-        default:null
+        default:"null"
     },
 
     tokens: [{
