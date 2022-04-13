@@ -2,7 +2,7 @@ const mongoose=require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt= require("jsonwebtoken")
 const store = require("store2");
-const { default: isBoolean } = require("validator/lib/isboolean");
+// const { default: isBoolean } = require("validator/lib/isboolean");
 const feedbackSchema = new mongoose.Schema({
    
    username :{
