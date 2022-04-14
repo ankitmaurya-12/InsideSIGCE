@@ -83,10 +83,10 @@
             </div>
         </nav>
 
-       <div class="featching-container">
+    <div class="featching-container">
          <div id="localNewsContainer">
  
-           <h2>Local News</h2>
+                <h2>Local News</h2>
 
               <% articles.forEach(article => { %>
 
@@ -107,7 +107,7 @@
           
                     <div class="actionContainer">
                     <!-- <div class="card-text mb-2 "><%= article.description %></div> -->
-                    <input type="text" class="card-text mb-2 my-2 autherName" disabled name="location"disabled value="Auther Name :<%= article.Auther_name  %>">
+                    <input type="text" class="card-text mb-2 my-2 autherName" disabled name="location"disabled value="Author Name :<%= article.Author_name  %>">
                     <a href="articles/<%= article.id %>" class="btn btn-primary">Read More</a>
                     <!-- <a href="articles/edit/<%= article.id %>" class="btn btn-info">Approved</a> -->
                     <a href="articles/Approved/<%= article.id %>" class="btn btn-info">Approved</a>
@@ -125,17 +125,17 @@
               <% }) %>
        
           
-       </div>
-
+        </div>
+        
        <div id="CollegeNewsContainer">
- <h2>college news</h2>
+         <h2>college news</h2>
         <% collegeNews.forEach(article => { %>
 
             <% if (article.status==false) {%>
             <div class="card mt-3">
               <div class="card-body">
                 <h4 class="card-title articleTitle"><%= article.title %></h4>
-                <h4 class="card-title articleTitle"><%= article.status %></h4>
+                <!-- <h4 class="card-title articleTitle"><%= article.status %></h4> -->
                 <div class="card-subtitle text-muted mb-2">
                   <%= article.createdAt.toLocaleDateString() %>
                 </div>
@@ -149,7 +149,7 @@
       
                 <div class="actionContainer">
                 <!-- <div class="card-text mb-2 "><%= article.description %></div> -->
-                <input type="text" class="card-text mb-2 my-2 autherName" disabled name="location"disabled value="Auther Name :<%= article.Auther_name  %>">
+                <input type="text" class="card-text mb-2 my-2 autherName" disabled name="location"disabled value="Author Name :<%= article.Author_name  %>">
                 <a href="articles/collegeNews/<%= article.id %>" class="btn btn-primary">Read More</a>
                 <!-- <a href="articles/edit/<%= article.id %>" class="btn btn-info">Approved</a> -->
                 <a href="articles/collegeNews/Approved/<%= article.id %>" class="btn btn-info">Approved</a>
@@ -195,7 +195,7 @@
 console.log("hi")
                 if(localNewsContainer.style.display=="none"){
                     
-                    // CollegeNewsContainer.style.display="block"
+                    CollegeNewsContainer.style.display="none"
                     localNewsContainer.style.display="block"
                 }else{
                     // CollegeNewsContainer.style.display="none"
