@@ -1,6 +1,6 @@
 console.log("Golbal")
 // const API_KEY="e4fc72735a3743afae298a92b13d3dd0"
-const API_KEY="e4fc72735a3743afae298a92b13d3dd0"
+const API_KEY="c587ccfb961b491ea8f012aeed33449d"
 let category="health";
 
 newscontainer=document.getElementById("news-container")

@@ -1,4 +1,4 @@
-const API_KEY="e4fc72735a3743afae298a92b13d3dd0"
+const API_KEY="c587ccfb961b491ea8f012aeed33449d"
 
 console.log("welcome");
 // topNewsContainer = document.querySelector(".top-news-container")
