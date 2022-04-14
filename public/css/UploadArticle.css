@@ -2,16 +2,15 @@ body{
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background:
-    linear-gradient(322deg, #ba4aff, rgba(#ba4aff, 0.5) );
+    
     
 }
 .uploadContainer{
     margin-top: 65px;
     margin-bottom: 20px;
-    border: 2px solid rgb(111, 52, 52) ;
+    /* border: 2px solid rgb(111, 52, 52) ; */
     background-color:white ;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    box-shadow: 0 8px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 29%);
     border-radius: 10px;
     padding: 20px;
     width: 80vw;
@@ -45,7 +44,8 @@ body{
 }
 #inpFile{
     margin: 20px;
-    padding: 10px;
+    padding: 30px;
+    border: none;
 }
 
 .image-preview{
@@ -62,12 +62,16 @@ margin: auto;
    align-content: space-around;
    }
 
-   .otherinfo input{
+   /* .otherinfo input{
        max-width: 200px;
-   }
+       width: 100%;
+   } */
 .input-conatiner{
+    display: flex;
+    flex-direction: column;
 margin: 1.4rem;
 display: flex;
+width: 100%;
 }
 input,label{
 height: 1.2rem;
@@ -75,13 +79,36 @@ font-size: 1.2rem;
 }
 
 #Title{
-width:70%;
+    margin-top: 10px;
+width:95%;
 height: 30px;
 
-
 }
-.description{
-width: 50%;
+
+input,textarea,[type=text] {
+    /* width: 100%; */
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+  
+  input[type=text]:focus {
+    border: 3px solid #555;
+  }
+ 
+  textarea:focus {
+    border: 3px solid #555;
+  }
+ 
+
+#Description{
+    margin-top: 10px;
+width: 95%;
+font-size: 20px;
 }
 #uploadAriticleContinaer{
 width: 90%;
@@ -97,6 +124,7 @@ border-radius: 10px;
 }
 .combine{
 margin: 10px;
+/* width: 100%; */
 display: block;
 }
 #submitbtn{
