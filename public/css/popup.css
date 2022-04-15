@@ -72,3 +72,15 @@
     /* font-size: 4rem; */
     color: black;
 }
+@media screen and (max-width: 816px) {
+    .errorMessage{
+        position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    
+    left: 25vw;
+	top:0px;
+        font-size: 1rem;
+    }
+}

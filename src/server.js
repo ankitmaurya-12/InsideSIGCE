@@ -48,7 +48,7 @@ const partials_path = path.join(__dirname, "../src/templates/partials")
 
 app.set("views", templte_path)
 
- console.log(process.env.SECRET_KEY)
+//  console.log(process.env.SECRET_KEY)
  app.use(session({
     secret: 'secret',
     cookie:{maxAge:null},
