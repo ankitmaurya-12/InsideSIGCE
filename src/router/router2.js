@@ -86,7 +86,7 @@ router2.post('/upload', upload.single('image'), async (req, res,err) => {
     const user = await models.Register.findOne({ username: req.cookies.authorname })
     let params = { 
       authorname:req.cookies.authorname,
-      location : user.location,
+      // location : user.location,
       AccountType : user.AccountType
       
     }
