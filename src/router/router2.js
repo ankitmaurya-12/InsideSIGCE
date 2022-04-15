@@ -105,7 +105,7 @@ router2.post('/upload', upload.single('image'), async (req, res,err) => {
                location :req.body.location,
                Author_name: req.cookies.authorname,     
                image: {
-                data : fs.readFileSync(path.join( './uploads/' + req.file.filename)),
+                data : fs.readFileSync(path.join( 'uploads/' + req.file.filename)),
                 contentType: 'image/png'
                   }
               }) 
@@ -138,7 +138,7 @@ router2.post('/upload', upload.single('image'), async (req, res,err) => {
           location :user.location,
            Author_name: req.cookies.authorname,
            image: {
-            data : fs.readFileSync(path.join( './uploads/' + req.file.filename)),
+            data : fs.readFileSync(path.join( 'uploads/' + req.file.filename)),
             contentType: 'image/png'
               }
           }) 
@@ -147,7 +147,7 @@ router2.post('/upload', upload.single('image'), async (req, res,err) => {
 
           const CollegeNewsSave = await CollegeNewsmodel.save();
           console.log("save")
-
+          console.log(path.join( 'uploads/' + req.file.filename))
           req.flash('error',{message:"Article Uploaded Successfully",type:"green"})
           res.redirect('back')
 
