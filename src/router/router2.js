@@ -86,7 +86,7 @@ router2.post('/upload', upload.single('image'), async (req, res,err) => {
     const user = await models.Register.findOne({ username: req.cookies.authorname })
     let params = { 
       authorname:req.cookies.authorname,
-      // location : user.location,
+      location : user.location,
       AccountType : user.AccountType
       
     }
@@ -103,13 +103,9 @@ router2.post('/upload', upload.single('image'), async (req, res,err) => {
               description :req.body.description,
        
                location :req.body.location,
-               Author_name: req.cookies.authorname,
-              
-
-         
-         
-              image: {
-                data : fs.readFileSync(path.join( 'uploads/' + req.file.filename)),
+               Author_name: req.cookies.authorname,     
+               image: {
+                data : fs.readFileSync(path.join( './uploads/' + req.file.filename)),
                 contentType: 'image/png'
                   }
               }) 
@@ -141,12 +137,8 @@ router2.post('/upload', upload.single('image'), async (req, res,err) => {
           // location :req.body.location,
           location :user.location,
            Author_name: req.cookies.authorname,
-         
-
-     
-     
-          image: {
-            data : fs.readFileSync(path.join( 'uploads/' + req.file.filename)),
+           image: {
+            data : fs.readFileSync(path.join( './uploads/' + req.file.filename)),
             contentType: 'image/png'
               }
           }) 
