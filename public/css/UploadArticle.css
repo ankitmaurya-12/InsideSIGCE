@@ -147,3 +147,21 @@ flex-direction: row;
 display: none;
 
 }
+
+@media screen and (max-width: 816px){
+    body{
+        width: 100%;
+        /* overflow: hidden; */
+    }
+    #uploadAriticleContinaer{
+        width: 100%;
+        overflow: hidden;
+        margin: auto;
+    }
+    .uploadContainer{
+       margin-left: 5%;
+    }
+    #Description,#Title,.image-preview{
+        width: 92%;
+    }
+    }
