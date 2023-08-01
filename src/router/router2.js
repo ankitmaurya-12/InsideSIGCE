@@ -226,9 +226,4 @@ router2.get('/:id', async (req, res) => {
   //   res.render("articles/collegeNews.ejs")
   // })
 
- 
- 
-  
- 
-
 module.exports=router2;

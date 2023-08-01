@@ -82,7 +82,7 @@ img{
     border-radius: 20px;
 }
 .navigation {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,.9)),url(../assest/header-bg.jpg);
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,.9)),url("http://sigce.edu.in/images/campus/campus/1.jpg");
     min-height: 100vh;
     background-position: center;
     background-size: cover;

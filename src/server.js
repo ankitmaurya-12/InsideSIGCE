@@ -100,7 +100,8 @@ app.get("/global-news", (req, res) => {
 app.get("/UsesrDashboard",auth,async (req, res) => {
     const authorname=req.cookies.authorname;
     const user = await models.Register.findOne({ username: req.cookies.authorname })
-    if(user.AccountType=="local"){
+    if(user.AccountType=="local" || user.AccountType=="admin" ){
+        
         // console.log(user.AccountType)
         const articles = await models.Article.find({"Author_name":req.cookies.authorname}).sort({ createdAt: 'desc' })
         res.render("UsesrDashboard.ejs",{ "articles": articles,"articleType":"local",authorname })

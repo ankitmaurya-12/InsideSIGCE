@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+  crossorigin="anonymous" />
+<style>
+  :root {
+    --mount-meadow: #1bbc9c;
+    --white-smoke: #f0f0f0;
+    --night-rider: #343434;
+    --black: #191b17;
+    --transition: all 0.5s ease-in-out;
+  }
+  .text{
+    color: var(--white-smoke);
+    font-size: 1.2rem;
+  }
+.footer{
+  margin-top: auto;
+ width: 100%;
+    
+    
+ 
+}
+.footer .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  width: 100vw;
+  margin-left: -8px;
+  background-color: rgb(29, 29, 28);
+}
+.footer-links{
+  margin-top: 50px;
+ font-size: 1.2rem;
+}
+.footer-links a{
+    color: var(--white-smoke);
+    opacity: 0.8;
+    width: 200px;
+    height: 200px;
+    {{!-- margin: 0 0.6rem; --}}
+    padding: 20px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+.footer-links a:hover{
+    background: var(--mount-meadow);
+}
+</style>
+
+<body>
+  <footer class="footer center">
+    <div class="container">
+      <div>
+
+        <p class="text">Copyright &copy; InsideSIGCE Website | All Rights Reserved</p>
+      </div>
+      <div class="footer-links">
+        <a href="#" class="center">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="center">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="center">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="#" class="center">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="center">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

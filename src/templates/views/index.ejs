@@ -4,44 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NewsHub.Home</title>
+    <title>InsideSIGCE.Home</title>
     
     
      <!-- normalize css -->
-     <!-- <link rel = "stylesheet" href = "./resources/normalize.css"> -->
+     <link rel = "stylesheet" href = "resources/normalize.css">
     <!-- font -->
    
    
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <!-- font awesome cdn -->
-    <link rel="stylesheet" href="/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <!-- magnific popup -->
-    <!-- <link rel = "stylesheet" href = "resources/Magnific-Popup-master/dist/magnific-popup.css"> -->
+    <link rel = "stylesheet" href = "resources/Magnific-Popup-master/dist/magnific-popup.css">
     <!-- owl carousel -->
-    <!-- <link rel = "stylesheet" href = "resources/OwlCarousel2-2.3.4/dist/assets/owl.carousel.css"> -->
-    <link rel="stylesheet" href="/css/owl.carousel.css">
-    <link rel="stylesheet" href="/css/animate.css">
-    <!-- <link rel = "stylesheet" href = "resources/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css"> -->
+    <link rel = "stylesheet" href = "resources/OwlCarousel2-2.3.4/dist/assets/owl.carousel.css">
+    <link rel = "stylesheet" href = "resources/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css">
     <!-- animate css -->
-    <!-- <link rel = "stylesheet" href = "resources/animate.css-main/animate.css"> -->
-
+    <link rel = "stylesheet" href = "resources/animate.css-main/animate.css">
     <!-- custom (main) css -->
      <link rel = "stylesheet" href = "css/index.css">
      <link rel="stylesheet" href="css/popup.css">
      
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-   
+    
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     
 </head>
 <body>
-  <%- include("../partials/loader"); %>
-   
+  
+    
    <navigation>
         <div class="navigation" id="navigation">
             <div class="navbar">
                 <div class="container">
                     <div class = "nav-toggler">
-                        <a href = "/index" class = "navbar-brand"> NewsHuB
+                        <a href = "/index" class = "navbar-brand"> InsideSIGCE
                         </a>
                         <a   class = "navbar-brand user">
                           <i class='bx bx-user-circle'><%=author%></i>
@@ -56,7 +53,7 @@
                             <a href = "/news" class = "nav-link">News</a>
                           </li>
                           <li class = "nav-item">
-                            <a href = "#news-section" class = "nav-link">Feature</a>
+                            <a href = "https://www.sigcemagazine.ml/" class = "nav-link">Magazine</a>
                           </li>
                           <li class = "nav-item">
                             <a href = "#team" class = "nav-link">Team</a>
@@ -66,6 +63,9 @@
                           </li>
                           <li class = "nav-item">
                             <a href = "#contact" class = "nav-link">Contact</a>
+                          
+                            <li class = "nav-item">
+                            <a href = "http://sigce.edu.in/" class = "nav-link">SIGCE</a>
                            
                           </li>
                           <li class = "nav-item">
@@ -104,10 +104,12 @@
       </div>
       <div class="center title">
         
-        <h1 style="color:white">Welcome To NewsHuB!</h1>
+        <h1 style="color:white">Welcome To InsideSIGCE!</h1>
         
       </div>
-     
+      <!-- {{!-- <div class="center title">
+        <h1 style="color:white">For</h1>
+      </div> --}} -->
       <span class="txt-type"data-wait="3000" data-words='["Global News","Local News","College News","Upload Your Own News"]'></span>
     </div>
 
@@ -148,7 +150,7 @@
       <div class = "container">
         <div class = "title">
           <h2 class = "wow animate__animated animate__bounceIn animate__slow">Meet Best News Uploader</h2>
-          <p class = "text">Lorem ipsum dolor sit amet consectetur</p>
+          <p class = "text"> <strong> Our InsideSIGCE team who provides correct News in very simplified Way.</strong></p>
         </div>
 
         <div class = "row owl-carousel owl-theme wow animate__animated animate__fadeInUp animate__slow">
@@ -268,7 +270,7 @@
       <div class = "container">
         <div class = "title">
           <h2 class = "wow animate__animated animate__bounceIn animate__slow">People also ask:</h2>
-         
+          <!-- {{!-- <p class = "text">Lorem ipsum dolor sit amet consectetur</p> --}} -->
         </div>
 
         <div class = "row wow animate__animated animate__fadeInUp animate__slow">
@@ -303,7 +305,7 @@
 
           <div class = "faq-item">
             <div class = "faq-head">
-              <h3>What are the type of News On NewsHub?</h3>
+              <h3>What are the type of News On InsideSIGCE?</h3>
               <span><i class = "fas fa-plus"></i></span>
             </div>
             <div class = "faq-content">
@@ -313,7 +315,8 @@
                 <li>College News</li>
 
               </ul>
-             
+              <!-- {{!-- <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nisi quis molestiae autem exercitationem sed, asperiores provident aut, quaerat illo ex reiciendis sapiente voluptas quisquam?</p>
+              <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, suscipit! Officiis architecto laboriosam harum officia!</p> --}} -->
             </div>
           </div>
         </div>
@@ -342,15 +345,15 @@
       <div class = "contact-right">
         <div>
           <h2>Visit Office</h2>
-          <p class = "text"> Thane west india</p>
+          <p class = "text">Sector 8, Plot 1, Ghansoli, Navi Mumbai, Maharashtra 400701</p>
         </div>
         <div>
           <h2>Call Us</h2>
-          <p class = "text">9920354977 / 8320-2838-0000</p>
+          <p class = "text">+91 7977141889 / +91 7021134166 / +91 9372627739 / +91 7738515293</p>
         </div>
         <div>
           <h2>Send Email</h2>
-          <p class = "text">NewsHub@gmail.com /shubham.vr.333@gmail.com</p>
+          <p class = "text">InsideSIGCE@gmail.com / ankitmaurya291202@gmail.com</p>
         </div>
       </div>
     </div>
@@ -363,23 +366,23 @@
   <div class = "container">
     <div>
 
-      <p class = "text">Copyright &copy; NewsHub Website | All Rights Reserved</p>
+      <p class = "text">Copyright &copy; InsideSIGCE Website | All Rights Reserved</p>
     </div>
     <div class = "footer-links">
-      <a href="https://www.facebook.com/shubham.varma.5895834" target="_blank" class="center">
+      <a href="https://www.facebook.com/ankit.maurya2/" target="_blank" class="center">
         <i class="fab fa-facebook-f"></i>
       </a>
-      <a href="https://www.instagram.com/shubham_vr_09/"target="_blank" class="center">
+      <a href="https://www.instagram.com/ankitmaurya_12/"target="_blank" class="center">
         <i class="fab fa-instagram"></i>
       </a>
-      <a href="https://twitter.com/Shubham80213413?t=qBQ7lyvyLDnj-F3qxkD0Gw&s=09" target="_blank" class="center">
+      <a href="https://twitter.com/ankitmaurya_12" target="_blank" class="center">
         <i class="fab fa-twitter"></i>
       </a>
-      <a href = "#" class = "center">
+      <a href = "https://www.linkedin.com/in/ankit-maurya-54a292206/" class = "center">
         <i class = "fab fa-linkedin"></i>
       </a>
-      <a href = "#" class = "center">
-        <i class = "fab fa-twitter"></i>
+      <a href = "https://github.com/ankitmaurya-12" class = "center">
+        <i class="fab fa-github"></i>
       </a>
       
     </div>
@@ -389,19 +392,14 @@
  
   
 </body>
-<!-- <script src = "./resources/jquery-3.5.1.js"></script> -->
+<script src = "resources/jquery-3.5.1.js"></script>
 
 <!-- owl carousel -->
-<!-- <script src = "./resources/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script> -->
+<script src = "resources/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
 <!-- wow js -->
-<!-- <script src = "/resources/WOW-master/dist/wow.js"></script> -->
-
-<script src="/js/jquery-3.5.1.js"></script>
-<script src="/js/wow.js"></script>
-<script src="/js/owl.carousel.js"></script>
-<script src="/js/index.js"></script>
-<script src="/js/typeing.js"></script>
-<script src="/js/popup.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src = "resources/WOW-master/dist/wow.js"></script>
+<script src="js/index.js"></script>
+<script src="js/typeing.js"></script>
+<script src="js/popup.js"></script>
 
 </html>
