@@ -4,7 +4,7 @@
 ### Title :- College News Project using React JS.
 
 Group Members : 
-Ankit Maurya
-Sahil Chaudhari
-Radhekrishna Mishra
+Ankit Maurya,
+Sahil Chaudhari,
+Radhekrishna Mishra,
 Rakesh Singh
